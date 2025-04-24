@@ -1,15 +1,15 @@
-Fitter Status : Successful - Thu Apr 24 10:02:36 2025
+Fitter Status : Successful - Thu Apr 24 18:20:48 2025
 Quartus Prime Version : 23.1std.1 Build 993 05/14/2024 SC Lite Edition
 Revision Name : vscode_fpga_project
 Top-level Entity Name : top
 Family : Cyclone IV E
 Device : EP4CE10E22C8
 Timing Models : Final
-Total logic elements : 98 / 10,320 ( < 1 % )
-    Total combinational functions : 98 / 10,320 ( < 1 % )
-    Dedicated logic registers : 68 / 10,320 ( < 1 % )
-Total registers : 68
-Total pins : 9 / 92 ( 10 % )
+Total logic elements : 130 / 10,320 ( 1 % )
+    Total combinational functions : 130 / 10,320 ( 1 % )
+    Dedicated logic registers : 86 / 10,320 ( < 1 % )
+Total registers : 86
+Total pins : 11 / 92 ( 12 % )
 Total virtual pins : 0
 Total memory bits : 0 / 423,936 ( 0 % )
 Embedded Multiplier 9-bit elements : 0 / 46 ( 0 % )

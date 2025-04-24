@@ -24,9 +24,13 @@ output wire tx_busy
 );
 
 // Clock frequency in hertz.
-parameter CLK_HZ = 50_000_000;
-parameter BIT_RATE =   9600;
+parameter CLK_HZ       = 50_000_000;
+parameter BIT_RATE     = 9600;
 parameter PAYLOAD_BITS = 8;
+
+parameter FIFO_WIDTH = 8;
+parameter FIFO_DEPTH = 16;
+
 
 wire [PAYLOAD_BITS-1:0]  uart_rx_data;
 wire        uart_rx_valid;
@@ -34,15 +38,18 @@ wire        uart_rx_break;
 
 wire        uart_tx_busy;
 wire [PAYLOAD_BITS-1:0]  uart_tx_data;
-wire        uart_tx_en;
+wire        uart_tx_en, uart_rx_en;
+
+
+wire full_fifo, empty_fifo;
+
 
 reg  [PAYLOAD_BITS-1:0]  led_reg;
 assign      led = led_reg;
 
 // ------------------------------------------------------------------------- 
-
-assign uart_tx_data = uart_rx_data;
-assign uart_tx_en   = uart_rx_valid;
+assign uart_tx_en   = ~empty_fifo;  // Add enable from user
+assign uart_rx_en   = ~full_fifo;   // Add enable from user 
 
 // ----------------------------- DEBUG -------------------------------------
 assign rx_valid = uart_rx_valid;
@@ -70,7 +77,7 @@ uart_rx #(
 .clk          (clk          ), // Top level system clock input.
 .resetn       (sw_0         ), // Asynchronous active low reset.
 .uart_rxd     (uart_rxd     ), // UART Recieve pin.
-.uart_rx_en   (1'b1         ), // Recieve enable
+.uart_rx_en   (uart_rx_en   ), // Recieve enable
 .uart_rx_break(uart_rx_break), // Did we get a BREAK message?
 .uart_rx_valid(uart_rx_valid), // Valid data recieved and available.
 .uart_rx_data (uart_rx_data )  // The recieved data.
@@ -92,5 +99,23 @@ uart_tx #(
 .uart_tx_data (uart_rx_data ) 
 );
 
+//
+// FIFO module
+//
+fifo #(
+    .WIDTH    (FIFO_WIDTH),
+    .DEPTH    (FIFO_DEPTH)
+)
+i_fifo
+(
+    .clk          (     clk              ),
+    .rst          (     ~sw_0            ),
+    .push         (     uart_rx_valid    ),
+    .pop          (     ~uart_tx_busy    ),
+    .write_data   (     uart_rx_data     ),
+    .read_data    (     uart_tx_data     ),
+    .empty        (     empty_fifo       ),
+    .full         (     full_fifo        )
+);
 
 endmodule

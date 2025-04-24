@@ -58,6 +58,7 @@ set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_
 set_global_assignment -name EDA_GENERATE_FUNCTIONAL_NETLIST OFF -section_id eda_board_design_boundary_scan
 set_global_assignment -name SYSTEMVERILOG_FILE ../src/uart_rx.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ../src/uart_tx.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../src/common/fifo.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ../src/top.sv
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top

@@ -4,21 +4,25 @@
 # QuestaSim-64 vmap 2024.1 Lib Mapping Utility 2024.02 Feb  1 2024
 # vmap work work 
 # Modifying modelsim.ini
+# ./src/common/fifo.sv ./src/common/fifo_model.sv ./src/top.sv ./src/uart_rx.sv ./src/uart_tx.sv
 # QuestaSim-64 vlog 2024.1 Compiler 2024.02 Feb  1 2024
-# Start time: 13:48:57 on Apr 24,2025
-# vlog -sv -work work ./src/top.sv ./src/uart_rx.sv ./src/uart_tx.sv ./testbench/tb.sv 
+# Start time: 18:07:30 on Apr 24,2025
+# vlog -sv -work work ./src/common/fifo.sv ./src/common/fifo_model.sv ./src/top.sv ./src/uart_rx.sv ./src/uart_tx.sv ./testbench/tb.sv 
+# -- Compiling module fifo
+# -- Compiling module fifo_model
 # -- Compiling module top
 # -- Compiling module uart_rx
 # -- Compiling module uart_tx
 # -- Compiling module tb
 # 
 # Top level modules:
+# 	fifo_model
 # 	tb
-# End time: 13:48:57 on Apr 24,2025, Elapsed time: 0:00:00
+# End time: 18:07:30 on Apr 24,2025, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # QuestaSim-64 vopt 2024.1 Compiler 2024.02 Feb  1 2024
 # ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility.
-# Start time: 13:48:57 on Apr 24,2025
+# Start time: 18:07:30 on Apr 24,2025
 # vopt work.tb -o tb_opt "+acc" 
 # 
 # Top level modules:
@@ -31,17 +35,15 @@
 # -- Loading module top
 # -- Loading module uart_rx
 # -- Loading module uart_tx
-# Incremental compilation check found 2 design-units (out of 4) may be reused.
-# Optimizing 2 design-units (inlining 0/4 module instances):
-# -- Optimizing module uart_rx(fast)
-# ** Note: (vopt-143) Recognized 1 FSM in module "uart_rx(fast)".
-# -- Optimizing module uart_tx(fast)
-# ** Note: (vopt-143) Recognized 1 FSM in module "uart_tx(fast)".
+# -- Loading module fifo
+# Incremental compilation check found 4 design-units (out of 5) may be reused.
+# Optimizing 1 design-unit (inlining 0/5 module instances):
+# -- Optimizing module tb(fast)
 # Optimized design name is tb_opt
-# End time: 13:48:58 on Apr 24,2025, Elapsed time: 0:00:01
+# End time: 18:07:31 on Apr 24,2025, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 1
 # vsim -gui -wlf wave.wlf tb_opt 
-# Start time: 13:48:58 on Apr 24,2025
+# Start time: 18:07:31 on Apr 24,2025
 # //  Questa Sim-64
 # //  Version 2024.1 win64 Feb  1 2024
 # //
@@ -61,13 +63,14 @@
 # Loading work.top(fast)
 # Loading work.uart_rx(fast)
 # Loading work.uart_tx(fast)
+# Loading work.fifo(fast)
 # ** Warning: (vsim-3015) [PCDPC] - Port size (4) does not match connection size (1) for port 'led'. The port definition is at: ./src/top.sv(19).
 #    Time: 0 ps  Iteration: 0  Instance: /tb/i_top File: ./testbench/tb.sv Line: 148
 # ** Warning: (vsim-WLF-5000) WLF file currently in use: wave.wlf
 #           File in use by: Alexey  Hostname: DESKTOP-P14AD43  ProcessID: 34188
-#           Attempting to use alternate WLF file "./wlft5qbj3z".
+#           Attempting to use alternate WLF file "./wlftx9k3ge".
 # ** Warning: (vsim-WLF-5001) Could not open WLF file: wave.wlf
-#           Using alternate file: ./wlft5qbj3z
+#           Using alternate file: ./wlftx9k3ge
 # Start of the task TOP 
 #           1/          0/          1 [PASS] Expected 00100100 and got 00100100
 #           2/          0/          2 [PASS] Expected 10000001 and got 10000001
@@ -89,12 +92,42 @@
 #          18/          0/         18 [PASS] Expected 10101010 and got 10101010
 #          19/          0/         19 [PASS] Expected 11100101 and got 11100101
 #          20/          0/         20 [PASS] Expected 01110111 and got 01110111
+#          21/          0/         21 [PASS] Expected 00010010 and got 00010010
+#          22/          0/         22 [PASS] Expected 10001111 and got 10001111
+#          23/          0/         23 [PASS] Expected 11110010 and got 11110010
+#          24/          0/         24 [PASS] Expected 11001110 and got 11001110
+#          25/          0/         25 [PASS] Expected 11101000 and got 11101000
+#          26/          0/         26 [PASS] Expected 11000101 and got 11000101
+#          27/          0/         27 [PASS] Expected 01011100 and got 01011100
+#          28/          0/         28 [PASS] Expected 10111101 and got 10111101
+#          29/          0/         29 [PASS] Expected 00101101 and got 00101101
+#          30/          0/         30 [PASS] Expected 01100101 and got 01100101
+#          31/          0/         31 [PASS] Expected 01100011 and got 01100011
+#          32/          0/         32 [PASS] Expected 00001010 and got 00001010
+#          33/          0/         33 [PASS] Expected 10000000 and got 10000000
+#          34/          0/         34 [PASS] Expected 00100000 and got 00100000
+#          35/          0/         35 [PASS] Expected 10101010 and got 10101010
+#          36/          0/         36 [PASS] Expected 10011101 and got 10011101
+#          37/          0/         37 [PASS] Expected 10010110 and got 10010110
+#          38/          0/         38 [PASS] Expected 00010011 and got 00010011
+#          39/          0/         39 [PASS] Expected 00001101 and got 00001101
+#          40/          0/         40 [PASS] Expected 01010011 and got 01010011
+#          41/          0/         41 [PASS] Expected 01101011 and got 01101011
+#          42/          0/         42 [PASS] Expected 11010101 and got 11010101
+#          43/          0/         43 [PASS] Expected 00000010 and got 00000010
+#          44/          0/         44 [PASS] Expected 10101110 and got 10101110
+#          45/          0/         45 [PASS] Expected 00011101 and got 00011101
+#          46/          0/         46 [PASS] Expected 11001111 and got 11001111
+#          47/          0/         47 [PASS] Expected 00100011 and got 00100011
+#          48/          0/         48 [PASS] Expected 00001010 and got 00001010
+#          49/          0/         49 [PASS] Expected 11001010 and got 11001010
+#          50/          0/         50 [PASS] Expected 00111100 and got 00111100
 # BIT RATE      :        9600b/s
 # Test Results:
-#     PASSES:          20
+#     PASSES:          50
 #     FAILS :           0
-# Finish simulation at time             20832025
+# Finish simulation at time             52080025
 # ** Note: $finish    : ./testbench/tb.sv(141)
-#    Time: 20832025 ns  Iteration: 1  Instance: /tb
-# End time: 13:49:04 on Apr 24,2025, Elapsed time: 0:00:06
+#    Time: 52080025 ns  Iteration: 1  Instance: /tb
+# End time: 18:07:44 on Apr 24,2025, Elapsed time: 0:00:13
 # Errors: 0, Warnings: 3

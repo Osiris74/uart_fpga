@@ -121,7 +121,7 @@ initial begin
     sw_0 = 'b1;
     #10;
 
-    repeat(20) 
+    repeat(50) 
     begin
         to_send = $random;
         #10;
